@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Usuario</title>
+    <!-- Incluir Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Perfil del Usuario</h1>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Nombre de Usuario:</strong> {{ usuario.username }}</p>
+                        <p><strong>Nombre:</strong> {{ usuario.first_name }}</p>
+                        <p><strong>Apellido:</strong> {{ usuario.last_name }}</p>
+                        <p><strong>Email:</strong> {{ usuario.email }}</p>
+                        <a href="{% url 'usuarios:editar_perfil' %}" class="btn btn-primary">Editar Perfil</a>
+                        <a href="{% url 'pagina_principal' %}" class="btn btn-secondary">Volver a la página principal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluir Bootstrap JS y dependencias (opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+{% endblock contenido %}
+

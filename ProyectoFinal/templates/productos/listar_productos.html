@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">LISTA DE PRODUCTOS</h1>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <form method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control" name="buscador" placeholder="Ingrese el nombre del producto para buscar" value="{{ buscador }}">
+                <button type="submit" class="btn btn-outline-secondary">BUSCAR</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'productos:crear_producto' %}" class="btn btn-primary">Nuevo Producto</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for producto in productos %}
+                <tr>
+                    <td>
+                        {% if producto.imagen %}
+                            <img height="50px" src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                        {% else %}
+                            <img height="50px" src="{% static 'images/defaults/producto.png' %}" alt="Imagen predeterminada">
+                        {% endif %}
+                    </td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>{{ producto.activo }}</td>
+                    <td>
+                        <a href="{% url 'productos:detalle_producto' producto.id %}" class="btn btn-primary btn-sm">VER DETALLES</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include 'base/paginacion.html' %}
+    </div>
+</div>
+{% endblock contenido %}
+
+
+
+
+
+

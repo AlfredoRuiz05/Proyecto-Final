@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="container">
+    <h1>Editar Categoría</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-warning">Actualizar</button>
+        <a href="{% url 'pagina_principal' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

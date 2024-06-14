@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+
+{% block title %}Detalle del Producto{% endblock title %}
+
+{% block contenido %}
+<div class="container">
+    <h1>Detalle del Producto</h1>
+    <h2>{{ producto.nombre }}</h2>
+    <p>Descripción: {{ producto.descripcion }}</p>
+    <p>Precio: ${{ producto.precio }}</p>
+    <p>Categoría: {{ producto.categoria }}</p>
+    <p>Activo: {% if producto.activo %}Sí{% else %}No{% endif %}</p>
+
+    {% if user.is_authenticated %}
+        {% if producto in user.favorito_set.all %}
+            <a href="{% url 'productos:eliminar_favorito' producto.id %}" class="btn btn-danger btn-sm">Eliminar de Favoritos</a>
+        {% else %}
+            <a href="{% url 'productos:agregar_favorito' producto.id %}" class="btn btn-primary btn-sm">Agregar a Favoritos</a>
+        {% endif %}
+    {% endif %}
+
+    <a href="{% url 'pagina_principal' %}" class="btn btn-secondary btn-sm">Volver a la página principal</a>
+</div>
+{% endblock contenido %}
+
+
+
+

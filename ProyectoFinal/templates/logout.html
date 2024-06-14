@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% extends 'base/base.html' %}
+{% load static %}
+{% block contenido %}
+
+    <h1>Cerrar sesión</h1>
+
+    <div class="card">
+        <div class="card-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" action="{% url 'logout' %}">{% csrf_token %}
+                <p>¿Estás seguro de que deseas cerrar sesión?</p>
+                <button class="w-100 btn btn-danger btn-lg mt-3" type="submit">Cerrar sesión</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock contenido %}

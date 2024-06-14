@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{% extends 'base/base.html' %}
+
+{% block title %}Lista de Favoritos{% endblock title %}
+
+{% block contenido %}
+
+<div class="container">
+    <h1>Mis Favoritos</h1>
+    <ul>
+        {% for favorito in favoritos %}
+            <li>
+                <a href="{% url 'productos:detalle_producto' favorito.producto.id %}">{{ favorito.producto.nombre }}</a>
+                <a href="{% url 'productos:eliminar_favorito' favorito.producto.id %}" class="btn btn-danger btn-sm">Eliminar de Favoritos</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'pagina_principal' %}" class="btn btn-secondary btn-sm">Volver a la página principal</a>
+</div>
+
+{% endblock contenido %}
+
+
+
